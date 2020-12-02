@@ -1,5 +1,4 @@
-Feature: Can I Send and Receive Email? 
-	Send and receive real emails in Cucumber using MailSlurp
+Feature:Send and receive real emails in Cucumber
 
 
 Scenario: Send a test email from sender email and receive it in receiver account 
