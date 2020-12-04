@@ -21,9 +21,9 @@ public class base {
 	public static FileInputStream input;
 	public static String testData = "src\\main\\java\\resources\\data.properties";
 
-	private static final String chrome_win = "src\\\\main\\\\java\\\\BrowserDirectory\\\\chromedriver.exe";
-	private static final String edge = "src\\main\\java\\BrowserDirectory\\MicrosoftWebDriver.exe";
-	private static final String firefox_win = "src\\main\\java\\BrowserDirectory\\geckodriver.exe";
+	private static final String chrome_win = "src\\main\\java\\browserDirectory\\chromedriver.exe";
+	private static final String edge = "src\\main\\java\\browserDirectory\\MicrosoftWebDriver.exe";
+	private static final String firefox_win = "src\\main\\java\\browserDirectory\\geckodriver.exe";
 	
 public WebDriver initializeDriver() 
 {
