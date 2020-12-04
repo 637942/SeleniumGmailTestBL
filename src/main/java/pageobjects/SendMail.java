@@ -1,4 +1,4 @@
-package pageobjects;
+package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,55 +12,68 @@ public class SendMail {
 		SendMail.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
 
 	@FindBy(className = "z0")
 	WebElement composeMail;
-	
+
 	@FindBy(css = ".vO")
 	WebElement toMail;
-	
+
 	@FindBy(css = ".aoT")
 	WebElement subjectText;
-	
+
 	@FindBy(className = "Am")
 	WebElement bodyText;
-	
-	@FindBy(className = "aoO")
-	static WebElement sendBtn;
-	
+
+	@FindBy(css = ".aoO")
+	WebElement sendBtn;
+
+	@FindBy(xpath = "//*[@id='gb']/div[2]/div[3]/div[1]/div[2]/div/a")
+	WebElement profile;
+
+	@FindBy(xpath = "//*[@id='gb_71']")
+	WebElement signout;
+
 	@FindBy(xpath = "//*[@class='zF']")
-	 java.util.List<WebElement> unreademail;
-	
-	
+	java.util.List<WebElement> unreademail;
+
+	@FindBy(css = ".bog")
+	java.util.List<WebElement> mailsubject;
+
 	public WebElement ComposeMail() {
 		return composeMail;
 	}
-	
-	public WebElement ToMail(){
+
+	public WebElement ToMail() {
 		return toMail;
 	}
-	
-		
-	public WebElement SubjectText(){
+
+	public WebElement SubjectText() {
 		return subjectText;
 	}
-	
-	public WebElement BodyText(){
+
+	public WebElement BodyText() {
 		return bodyText;
 	}
-	
-	public static WebElement SendBtn(){
+
+	public WebElement SendBtn() {
 		return sendBtn;
 	}
-	
-	public java.util.List<WebElement> UnreadeMail(){
+
+	public WebElement Profile() {
+		return profile;
+	}
+
+	public WebElement Signout() {
+		return signout;
+	}
+
+	public java.util.List<WebElement> UnreadeMail() {
 		return unreademail;
 	}
-	
-		
 
-
-
+	public java.util.List<WebElement> MailSubject() {
+		return mailsubject;
+	}
 
 }

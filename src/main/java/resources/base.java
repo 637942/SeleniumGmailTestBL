@@ -11,44 +11,81 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class base {
 
 	public WebDriver driver;
-	public Properties prop;
+	public static Properties prop;
+	public static FileInputStream input;
+	public static String testData = "src\\main\\java\\resources\\data.properties";
 
-	public WebDriver initializeDriver() throws IOException {
-
-		prop = new Properties();
-		FileInputStream fis = new FileInputStream(
-				"C:\\Users\\Karpagam Karthick\\SeleniumGmail\\src\\main\\java\\resources\\data.properties");
-
-		prop.load(fis);
-		String browserName = prop.getProperty("browser");
-		System.out.println(browserName);
-
-		if (browserName.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Karpagam Karthick\\chromedriver.exe");
-			driver = new ChromeDriver();
-			// execute in chrome driver
-
-		} else if (browserName.equals("firefox")) {
-			driver = new FirefoxDriver();
-			// firefox code
-		} else if (browserName.equals("IE")) {
-           //	IE code
-		}
-
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		return driver;
-
+	private static final String chrome_win = "src\\\\main\\\\java\\\\BrowserDirectory\\\\chromedriver.exe";
+	private static final String edge = "src\\main\\java\\BrowserDirectory\\MicrosoftWebDriver.exe";
+	private static final String firefox_win = "src\\main\\java\\BrowserDirectory\\geckodriver.exe";
+	
+public WebDriver initializeDriver() 
+{
+	
+ prop= new Properties();
+ try {
+		input = new FileInputStream(testData);
+		prop.load(input);
+		input.close();
+	} catch (IOException e) {
+		e.printStackTrace();
 	}
+ 
+String browserName=prop.getProperty("browser");
+System.out.println(browserName);
 
-	public void getScreenshot(String result) throws IOException {
-		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src, new File("C://test//" + result + "screenshot.png"));
+if(browserName.equals("chrome"))
+{
+	 System.setProperty("webdriver.chrome.driver",chrome_win);
+	 driver= new ChromeDriver();
+		//execute in chrome driver
+	
+}
+else if (browserName.equals("firefox"))
+{
+	System.setProperty("webdriver.geckos.driver", firefox_win);
+	 driver= new FirefoxDriver();
+	
+}
+else if (browserName.equals("edge"))
+{
+	System.setProperty("webdriver.edges.driver", edge);
+	driver = new EdgeDriver();
+}
 
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+return driver;
+
+
+}
+
+
+public static String getData(String key) {
+	prop = new Properties();
+
+	try {
+		input = new FileInputStream(testData);
+		prop.load(input);
+		input.close();
+	} catch (IOException e) {
+		e.printStackTrace();
 	}
+	return prop.getProperty(key);
+}
+
+public void getScreenshot(String result) throws IOException
+{
+	File src=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	FileUtils.copyFile(src, new File("C://test//"+result+"screenshot.png"));
+	
+}
+
+
 
 }
